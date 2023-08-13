@@ -4,7 +4,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from langchain.chat_models import ChatOpenAI
-from llama_index import SimpleDirectoryReader, ServiceContext, GPTVectorStoreIndex, LLMPredictor, StorageContext, load_index_from_storage
+from llama_index import (SimpleDirectoryReader, ServiceContext,
+                         GPTVectorStoreIndex, LLMPredictor,
+                         StorageContext, load_index_from_storage)
 
 index_json = 'index_documents.json'
 
@@ -20,9 +22,16 @@ def main():
         # train_data_dirから学習データの情報を取得
         documents = SimpleDirectoryReader(train_data_dir).load_data()
         # LLMにgpt-3.5-turbo を指定（現状デフォルトは davinci ）
-        service_context = ServiceContext.from_defaults(llm_predictor = LLMPredictor(llm= ChatOpenAI( model_name="gpt-3.5-turbo")))
+        service_context = ServiceContext.from_defaults(
+            llm_predictor=LLMPredictor(
+                llm=ChatOpenAI(model_name="gpt-3.5-turbo")
+            )
+        )
         # documents をもとに Embbeddings API を通信してベクター取得し GPTVectorStoreIndex を生成
-        index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
+        index = GPTVectorStoreIndex.from_documents(
+            documents,
+            service_context=service_context
+        )
         # 作成したインデックスをディスクに保存
         index.storage_context.persist(persist_dir=index_json)
     else:
@@ -31,7 +40,7 @@ def main():
 
     # プロンプト
     query_engine = index.as_query_engine()
-    qry = "" 
+    qry = ""
 
     # ベクター検索 + Chat Completion API 実行
     response = query(query_engine, qry)
@@ -47,7 +56,7 @@ def load_from_storage():
     return index
 
 
-def query(query_engine, query:str) -> str:
+def query(query_engine, query: str) -> str:
     """
     クエリを投げた結果を返す関数
     """
