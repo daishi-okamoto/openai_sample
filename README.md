@@ -26,7 +26,7 @@ https://gpt-index.readthedocs.io/en/latest/examples/customization/llms/AzureOpen
 
 2. 作成したフォルダ名をdocuments.pyのtrain_data_dir変数に設定
 
-3. documents.pyのquery変数にクエリを設定
+3. documents.pyのqry変数にクエリを設定
 
 4. 下記のコマンドでプログラムを実行
 ```
@@ -37,7 +37,7 @@ python documents.py
 ## 独自データにWebページを利用する場合
 1. web.pyのurl_list変数に学習データ用のWebページを設定
 
-2. web.pyのquery変数にクエリを設定
+2. web.pyのqry変数にクエリを設定
 
 3. 下記のコマンドでプログラムを実行
 ```
