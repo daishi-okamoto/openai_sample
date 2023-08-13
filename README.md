@@ -16,7 +16,9 @@ Azure OpenAI利用時は、追加で下記の環境変数の設定も必要に�
 OPENAI_API_TYPE="azure"
 OPENAI_API_BASE="<エンドポイント>"
 OPENAI_API_VERSION="yyyy-mm-dd"
-```
+```  
+※Azure OpenAI利用時の参考  
+https://gpt-index.readthedocs.io/en/latest/examples/customization/llms/AzureOpenAI.html
 
 ## 独自データにファイルを利用する場合
 1. app/フォルダ内にフォルダを作成し、そのフォルダ内に学習データ用のドキュメントを格納する  
