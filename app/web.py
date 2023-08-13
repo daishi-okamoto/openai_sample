@@ -37,7 +37,7 @@ def main():
 
     # プロンプト
     query_engine = index.as_query_engine(streaming=True)
-    qry = "機械学習のアプリケーションを実装したい場合はどのプログラミング言語がおすすめですか？"
+    qry = ""
 
     # ベクター検索 + Chat Completion API 実行
     response = query(query_engine, qry)

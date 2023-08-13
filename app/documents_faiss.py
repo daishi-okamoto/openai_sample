@@ -43,7 +43,7 @@ def main():
 
     # プロンプト
     query_engine = index.as_query_engine(streaming=True)
-    qry = "職務経歴を教えてください"
+    qry = ""
 
     # ベクター検索 + Chat Completion API 実行
     response = query(query_engine, qry)
