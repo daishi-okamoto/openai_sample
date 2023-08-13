@@ -36,12 +36,13 @@ def main():
     index.storage_context.persist(persist_dir=index_json)
 
     # プロンプト
-    query_engine = index.as_query_engine()
+    query_engine = index.as_query_engine(streaming=True)
     qry = "機械学習のアプリケーションを実装したい場合はどのプログラミング言語がおすすめですか？"
 
     # ベクター検索 + Chat Completion API 実行
     response = query(query_engine, qry)
-    print("Answer:", response)
+    # stream形式でChatAIからのレスポンスを出力
+    response.print_response_stream()
 
 
 def query(query_engine, query: str) -> str:

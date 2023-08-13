@@ -39,12 +39,13 @@ def main():
         index = load_from_storage()
 
     # プロンプト
-    query_engine = index.as_query_engine()
+    query_engine = index.as_query_engine(streaming=True)
     qry = ""
 
     # ベクター検索 + Chat Completion API 実行
     response = query(query_engine, qry)
-    print("Answer:", response)
+    # stream形式でChatAIからのレスポンスを出力
+    response.print_response_stream()
 
 
 def load_from_storage():
