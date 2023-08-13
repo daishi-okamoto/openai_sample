@@ -6,7 +6,7 @@ load_dotenv()
 from langchain.chat_models import ChatOpenAI
 from llama_index import SimpleDirectoryReader, ServiceContext, GPTVectorStoreIndex, LLMPredictor, StorageContext, load_index_from_storage
 
-index_json = 'index_career.json'
+index_json = 'index_documents.json'
 
 
 def main():
@@ -16,7 +16,7 @@ def main():
     # インデックスが作成済みでない場合は新規で作成する処理から実施
     if not os.path.isdir(index_json):
         # 学習データのディレクトリ
-        train_data_dir = 'data_career'
+        train_data_dir = 'data_documents'
         # train_data_dirから学習データの情報を取得
         documents = SimpleDirectoryReader(train_data_dir).load_data()
         # LLMにgpt-3.5-turbo を指定（現状デフォルトは davinci ）
@@ -31,7 +31,7 @@ def main():
 
     # プロンプト
     query_engine = index.as_query_engine()
-    qry = "これまでの職務経歴を要約してください" 
+    qry = "" 
 
     # ベクター検索 + Chat Completion API 実行
     response = query(query_engine, qry)
